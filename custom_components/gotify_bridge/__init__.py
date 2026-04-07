@@ -37,6 +37,8 @@ from .const import (
 FIELD_MESSAGE = "message"
 FIELD_TITLE = "title"
 
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
 
 def _build_extras(service_data: Mapping[str, Any]) -> dict[str, Any] | None:
     """Build a Gotify extras payload from service data."""
