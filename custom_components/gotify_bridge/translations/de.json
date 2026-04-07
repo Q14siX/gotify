@@ -12,7 +12,7 @@
         },
         "data_description": {
           "name": "Frei wählbarer Name dieses Home-Assistant-Eintrags.",
-          "url": "Basis-URL Deines Gotify-Servers.",
+          "url": "Basis-URL Deines Gotify-Servers, einschließlich Schema und optionalem Port.",
           "verify_ssl": "Nur deaktivieren, wenn Du bewusst ein selbstsigniertes oder anderweitig nicht vertrauenswürdiges Zertifikat verwendest."
         }
       },
