@@ -12,7 +12,7 @@
         },
         "data_description": {
           "name": "Freely selectable name of this Home Assistant entry.",
-          "url": "Base URL of your Gotify server, for example `https://gotify.example.com`.",
+          "url": "Base URL of your Gotify server.",
           "verify_ssl": "Disable this only if you intentionally use a self-signed or otherwise untrusted certificate."
         }
       },
