@@ -1,0 +1,92 @@
+blueprint:
+  name: Gotify – Nachricht bei Auslösung senden
+  description: >
+    Sendet bei jeder Auslösung dieser Automation eine Gotify-Nachricht über den
+    Service `gotify_bridge.send_message`. Damit kannst Du beliebige Trigger,
+    Bedingungen und optionale Zusatzinformationen wie Priorität, Markdown,
+    Klick-URL, Intent-URL oder ein großes Bild mit Gotify verknüpfen.
+  domain: automation
+  source_url: https://raw.githubusercontent.com/Q14siX/gotify/main/blueprints/automation/gotify_bridge/de/send_message_on_trigger.yaml
+  input:
+    trigger:
+      name: Auslöser
+      description: Einer oder mehrere Auslöser, die diese Automation starten.
+      selector:
+        trigger:
+    conditions:
+      name: Zusätzliche Bedingungen
+      description: Optionale Bedingungen, die vor dem Versand erfüllt sein müssen.
+      default: []
+      selector:
+        condition:
+    entry_id:
+      name: Gotify-Eintrags-ID
+      description: >
+        Optional. Nur erforderlich, wenn mehrere Gotify-Integrationen eingerichtet
+        sind und gezielt ein bestimmter Eintrag verwendet werden soll.
+      default: ""
+      selector:
+        text:
+    title:
+      name: Titel
+      description: Optionaler Titel der Gotify-Nachricht.
+      default: ""
+      selector:
+        text:
+    message:
+      name: Nachricht
+      description: Textinhalt der Gotify-Nachricht.
+      selector:
+        text:
+          multiline: true
+    priority:
+      name: Priorität
+      description: Gotify-Priorität von 0 bis 10.
+      default: 5
+      selector:
+        number:
+          min: 0
+          max: 10
+          mode: slider
+    markdown:
+      name: Markdown aktivieren
+      description: Sendet die Nachricht als Markdown.
+      default: false
+      selector:
+        boolean:
+    click_url:
+      name: Klick-URL
+      description: Optional. URL, die beim Antippen der Nachricht geöffnet wird.
+      default: ""
+      selector:
+        text:
+    big_image_url:
+      name: Große Bild-URL
+      description: Optional. Bild-URL für Clients, die ein großes Bild unterstützen.
+      default: ""
+      selector:
+        text:
+    intent_url:
+      name: Intent-URL
+      description: Optional. Android-Intent-URL für `onReceive`.
+      default: ""
+      selector:
+        text:
+
+mode: queued
+max: 25
+
+triggers: !input trigger
+conditions: !input conditions
+
+actions:
+  - action: gotify_bridge.send_message
+    data:
+      entry_id: !input entry_id
+      title: !input title
+      message: !input message
+      priority: !input priority
+      markdown: !input markdown
+      click_url: !input click_url
+      big_image_url: !input big_image_url
+      intent_url: !input intent_url

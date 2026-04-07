@@ -1,0 +1,62 @@
+blueprint:
+  name: Gotify – WebSocket-Verbindung überwachen
+  description: >
+    Überwacht den Binärsensor für die WebSocket-Verbindung einer Gotify-Instanz.
+    Du kannst getrennte Aktionen für Verbindungsverlust und Wiederverbindung
+    hinterlegen. Dadurch eignet sich das Blueprint zum Beispiel für Warnungen,
+    Eskalationen oder eine Rückmeldung, sobald der Stream wieder verbunden ist.
+  domain: automation
+  source_url: https://raw.githubusercontent.com/Q14siX/gotify/main/blueprints/automation/gotify_bridge/de/monitor_websocket_connection.yaml
+  input:
+    websocket_entity:
+      name: WebSocket-Binärsensor
+      description: Wähle den Binärsensor „WebSocket-Verbindung“ Deiner Gotify-Instanz.
+      selector:
+        entity:
+          domain: binary_sensor
+    disconnect_for:
+      name: Verzögerung bei Verbindungsverlust
+      description: >
+        Wie lange der Sensor auf „aus“ stehen muss, bevor die Trennungsaktionen
+        ausgeführt werden.
+      default:
+        minutes: 1
+      selector:
+        duration:
+    disconnect_actions:
+      name: Aktionen bei Trennung
+      description: Aktionen, die bei Verbindungsverlust ausgeführt werden.
+      default: []
+      selector:
+        action:
+    reconnect_actions:
+      name: Aktionen bei Wiederverbindung
+      description: Aktionen, die bei erneuter Verbindung ausgeführt werden.
+      default: []
+      selector:
+        action:
+
+mode: restart
+
+triggers:
+  - trigger: state
+    entity_id: !input websocket_entity
+    to: "off"
+    for: !input disconnect_for
+    id: disconnected
+  - trigger: state
+    entity_id: !input websocket_entity
+    from: "off"
+    to: "on"
+    id: reconnected
+
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'disconnected' }}"
+        sequence: !input disconnect_actions
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'reconnected' }}"
+        sequence: !input reconnect_actions

@@ -1,0 +1,61 @@
+blueprint:
+  name: Gotify – Monitor WebSocket connection
+  description: >
+    Monitors the binary sensor representing the WebSocket connection of a Gotify
+    entry. You can define separate action sequences for disconnects and
+    reconnects, which makes this blueprint useful for alerts, escalation paths,
+    or recovery notifications.
+  domain: automation
+  source_url: https://raw.githubusercontent.com/Q14siX/gotify/main/blueprints/automation/gotify_bridge/en/monitor_websocket_connection.yaml
+  input:
+    websocket_entity:
+      name: WebSocket binary sensor
+      description: Select the “WebSocket connection” binary sensor of your Gotify entry.
+      selector:
+        entity:
+          domain: binary_sensor
+    disconnect_for:
+      name: Disconnect delay
+      description: >
+        How long the sensor must stay “off” before the disconnect actions are run.
+      default:
+        minutes: 1
+      selector:
+        duration:
+    disconnect_actions:
+      name: Disconnect actions
+      description: Actions that should run when the WebSocket connection is lost.
+      default: []
+      selector:
+        action:
+    reconnect_actions:
+      name: Reconnect actions
+      description: Actions that should run once the WebSocket connection is restored.
+      default: []
+      selector:
+        action:
+
+mode: restart
+
+triggers:
+  - trigger: state
+    entity_id: !input websocket_entity
+    to: "off"
+    for: !input disconnect_for
+    id: disconnected
+  - trigger: state
+    entity_id: !input websocket_entity
+    from: "off"
+    to: "on"
+    id: reconnected
+
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'disconnected' }}"
+        sequence: !input disconnect_actions
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.id == 'reconnected' }}"
+        sequence: !input reconnect_actions

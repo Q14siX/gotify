@@ -1,0 +1,17 @@
+{
+  "domain": "gotify_bridge",
+  "name": "Gotify",
+  "codeowners": [
+    "@Q14siX"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Q14siX/gotify",
+  "issue_tracker": "https://github.com/Q14siX/gotify/issues",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "loggers": [
+    "custom_components.gotify_bridge"
+  ],
+  "requirements": [],
+  "version": "20260407.1630"
+}

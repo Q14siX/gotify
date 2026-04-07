@@ -1,0 +1,59 @@
+send_message:
+  fields:
+    entry_id:
+      selector:
+        text:
+    message:
+      required: true
+      selector:
+        text:
+    title:
+      selector:
+        text:
+    priority:
+      default: 5
+      selector:
+        number:
+          min: 0
+          max: 10
+          mode: box
+    markdown:
+      default: false
+      selector:
+        boolean:
+    click_url:
+      selector:
+        text:
+    big_image_url:
+      selector:
+        text:
+    intent_url:
+      selector:
+        text:
+    extras:
+      selector:
+        object:
+
+delete_message:
+  fields:
+    entry_id:
+      selector:
+        text:
+    message_id:
+      required: true
+      selector:
+        number:
+          min: 1
+          mode: box
+
+clear_messages:
+  fields:
+    entry_id:
+      selector:
+        text:
+
+refresh:
+  fields:
+    entry_id:
+      selector:
+        text:

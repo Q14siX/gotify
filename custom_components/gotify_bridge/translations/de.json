@@ -1,0 +1,267 @@
+{
+  "title": "Gotify",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Serververbindung",
+        "description": "Richte die grundlegende Verbindung zu Deinem Gotify-Server ein.",
+        "data": {
+          "name": "Name",
+          "url": "Server-URL",
+          "verify_ssl": "SSL-Zertifikat prüfen"
+        },
+        "data_description": {
+          "name": "Frei wählbarer Name dieses Home-Assistant-Eintrags.",
+          "url": "Basis-URL Deines Gotify-Servers, zum Beispiel `https://gotify.example.com`.",
+          "verify_ssl": "Nur deaktivieren, wenn Du bewusst ein selbstsigniertes oder anderweitig nicht vertrauenswürdiges Zertifikat verwendest."
+        }
+      },
+      "access": {
+        "title": "Zugriff und Berechtigungen",
+        "description": "Wähle aus, wie dieser Eintrag genutzt werden soll, und hinterlege die dazu passenden Token-Typen.",
+        "data": {
+          "mode": "Betriebsmodus",
+          "app_token": "Anwendungs-Token",
+          "client_token": "Client-Token"
+        },
+        "data_description": {
+          "mode": "Vollzugriff = senden + empfangen, nur senden = nur Benachrichtigungen, nur empfangen = nur Stream und Verwaltung.",
+          "app_token": "Erforderlich, damit Home Assistant Benachrichtigungen an Gotify senden kann.",
+          "client_token": "Erforderlich für Benutzer-, Anwendungs-, Nachrichten- und WebSocket-Zugriffe."
+        }
+      },
+      "behavior": {
+        "title": "Aktualisierung und Streaming",
+        "description": "Lege fest, wie oft Home Assistant Gotify abfragen soll und ob Live-Nachrichten per WebSocket empfangen werden sollen.",
+        "data": {
+          "scan_interval": "Abfrageintervall (Sekunden)",
+          "enable_websocket": "WebSocket-Stream aktivieren"
+        },
+        "data_description": {
+          "scan_interval": "Kleinere Werte aktualisieren Sensoren und Statistiken häufiger, erzeugen aber mehr API-Verkehr.",
+          "enable_websocket": "Empfohlen für eingehende Nachrichten und Live-Aktualisierungen."
+        }
+      },
+      "application": {
+        "title": "Überwachte Anwendung",
+        "description": "Wähle optional eine Gotify-Anwendung aus, deren Nachrichtenliste für Nachrichtenstatistiken und Sammellöschungen verwendet werden soll.",
+        "data": {
+          "monitored_application_id": "Überwachte Anwendung"
+        },
+        "data_description": {
+          "monitored_application_id": "Leer lassen, wenn keine bestimmte Anwendung überwacht werden soll."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum Server fehlgeschlagen.",
+      "invalid_client_token": "Der Client-Token ist ungültig.",
+      "unknown": "Ein unbekannter Fehler ist aufgetreten."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Verhalten",
+        "description": "Passe Zertifikatsprüfung, Abfrageintervall und Live-Streaming an.",
+        "data": {
+          "verify_ssl": "SSL-Zertifikat prüfen",
+          "scan_interval": "Abfrageintervall (Sekunden)",
+          "enable_websocket": "WebSocket-Stream aktivieren"
+        },
+        "data_description": {
+          "verify_ssl": "Nur deaktivieren, wenn Du bewusst ein selbstsigniertes oder anderweitig nicht vertrauenswürdiges Zertifikat verwendest.",
+          "scan_interval": "Kleinere Werte aktualisieren Sensoren und Statistiken häufiger, erzeugen aber mehr API-Verkehr.",
+          "enable_websocket": "Empfohlen für eingehende Nachrichten und Live-Aktualisierungen."
+        }
+      },
+      "application": {
+        "title": "Überwachte Anwendung",
+        "description": "Wähle optional aus, welche Gotify-Anwendung für Nachrichtenstatistiken und Löschaktionen überwacht werden soll.",
+        "data": {
+          "monitored_application_id": "Überwachte Anwendung"
+        },
+        "data_description": {
+          "monitored_application_id": "Leer lassen, wenn keine bestimmte Anwendung überwacht werden soll."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum Server nicht möglich.",
+      "unknown": "Es ist ein unbekannter Fehler aufgetreten."
+    }
+  },
+  "selector": {
+    "mode": {
+      "options": {
+        "full": "Vollzugriff",
+        "send_only": "Nur senden",
+        "receive_only": "Nur empfangen"
+      }
+    }
+  },
+  "entity": {
+    "notify": {
+      "notifier": {
+        "name": "Benachrichtigungen"
+      }
+    },
+    "event": {
+      "incoming_message": {
+        "name": "Eingehende Nachricht"
+      }
+    },
+    "binary_sensor": {
+      "websocket_connected": {
+        "name": "WebSocket-Verbindung"
+      }
+    },
+    "sensor": {
+      "server_version": {
+        "name": "Server-Version"
+      },
+      "server_commit": {
+        "name": "Server-Commit"
+      },
+      "health": {
+        "name": "Server-Zustand",
+        "state": {
+          "green": "Grün",
+          "yellow": "Warnung",
+          "red": "Problem",
+          "unknown": "Unbekannt"
+        }
+      },
+      "database_health": {
+        "name": "Datenbank-Zustand",
+        "state": {
+          "green": "Grün",
+          "yellow": "Warnung",
+          "red": "Problem",
+          "unknown": "Unbekannt"
+        }
+      },
+      "current_user": {
+        "name": "Aktueller Benutzer"
+      },
+      "applications_count": {
+        "name": "Anzahl Anwendungen"
+      },
+      "clients_count": {
+        "name": "Anzahl Clients"
+      },
+      "monitored_messages_count": {
+        "name": "Anzahl überwachter Nachrichten"
+      },
+      "received_messages_total": {
+        "name": "Anzahl empfangener Nachrichten"
+      },
+      "last_message_title": {
+        "name": "Titel der letzten Nachricht"
+      },
+      "last_message_priority": {
+        "name": "Priorität der letzten Nachricht"
+      }
+    }
+  },
+  "services": {
+    "send_message": {
+      "name": "Nachricht senden",
+      "description": "Sende eine Nachricht über den ausgewählten Gotify-Eintrag.",
+      "fields": {
+        "entry_id": {
+          "name": "Eintrags-ID",
+          "description": "Zielt auf einen bestimmten Gotify-Eintrag, wenn mehrere Einträge vorhanden sind."
+        },
+        "message": {
+          "name": "Nachricht",
+          "description": "Zu sendender Nachrichtentext."
+        },
+        "title": {
+          "name": "Titel",
+          "description": "Optionaler Titel der Benachrichtigung."
+        },
+        "priority": {
+          "name": "Priorität",
+          "description": "Gotify-Prioritätswert."
+        },
+        "markdown": {
+          "name": "Markdown",
+          "description": "Sendet die Nachricht als Markdown über `client::display.contentType`."
+        },
+        "click_url": {
+          "name": "Klick-URL",
+          "description": "URL, die beim Antippen der Benachrichtigung geöffnet werden soll."
+        },
+        "big_image_url": {
+          "name": "Große Bild-URL",
+          "description": "Große Bild-URL für Clients, die dies unterstützen."
+        },
+        "intent_url": {
+          "name": "Intent-URL",
+          "description": "Android-Intent-URL für die `onReceive`-Aktion."
+        },
+        "extras": {
+          "name": "Extras",
+          "description": "Rohes `extras`-Objekt, das unverändert an Gotify übergeben werden soll."
+        }
+      }
+    },
+    "delete_message": {
+      "name": "Nachricht löschen",
+      "description": "Löscht eine Gotify-Nachricht anhand ihrer numerischen ID.",
+      "fields": {
+        "entry_id": {
+          "name": "Eintrags-ID",
+          "description": "Zielt auf einen bestimmten Gotify-Eintrag, wenn mehrere Einträge vorhanden sind."
+        },
+        "message_id": {
+          "name": "Nachrichten-ID",
+          "description": "Numerische Gotify-Nachrichten-ID."
+        }
+      }
+    },
+    "clear_messages": {
+      "name": "Nachrichten leeren",
+      "description": "Löscht alle Nachrichten der konfigurierten überwachten Anwendung des ausgewählten Eintrags.",
+      "fields": {
+        "entry_id": {
+          "name": "Eintrags-ID",
+          "description": "Zielt auf einen bestimmten Gotify-Eintrag, wenn mehrere Einträge vorhanden sind."
+        }
+      }
+    },
+    "refresh": {
+      "name": "Aktualisieren",
+      "description": "Aktualisiert alle Gotify-Daten des ausgewählten Eintrags sofort.",
+      "fields": {
+        "entry_id": {
+          "name": "Eintrags-ID",
+          "description": "Zielt auf einen bestimmten Gotify-Eintrag, wenn mehrere Einträge vorhanden sind."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_entry_id": {
+      "message": "Unbekannte Gotify-Eintrags-ID: {entry_id}"
+    },
+    "entry_id_required": {
+      "message": "Es sind mehrere Gotify-Einträge konfiguriert. Bitte gib eine Eintrags-ID an."
+    },
+    "missing_app_token": {
+      "message": "Dieser Gotify-Eintrag hat keinen Anwendungs-Token und kann deshalb keine Nachrichten senden."
+    },
+    "missing_client_token": {
+      "message": "Dieser Gotify-Eintrag hat keinen Client-Token und kann deshalb keine Nachrichten verwalten oder empfangen."
+    },
+    "missing_monitored_application": {
+      "message": "Für diesen Gotify-Eintrag ist keine überwachte Anwendung konfiguriert."
+    }
+  },
+  "device": {
+    "server_entry": {
+      "name": "Gotify-Server ({name})"
+    }
+  }
+}

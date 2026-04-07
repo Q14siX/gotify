@@ -1,0 +1,90 @@
+blueprint:
+  name: Gotify – Auf eingehende Nachricht reagieren
+  description: >
+    Reagiert auf eingehende Gotify-Nachrichten, die von der Integration über das
+    Event `gotify_bridge_message_received` an den Home-Assistant-Eventbus gesendet
+    werden. Optional kannst Du nach Eintrags-ID, Anwendungs-ID, Mindestpriorität,
+    Titeltext oder Nachrichtentext filtern und anschließend beliebige Aktionen
+    ausführen.
+  domain: automation
+  source_url: https://raw.githubusercontent.com/Q14siX/gotify/main/blueprints/automation/gotify_bridge/de/react_to_incoming_message.yaml
+  input:
+    entry_id:
+      name: Gotify-Eintrags-ID
+      description: >
+        Optional. Leer lassen, um eingehende Nachrichten aller Gotify-Einträge zu
+        berücksichtigen.
+      default: ""
+      selector:
+        text:
+    application_id:
+      name: Anwendungs-ID
+      description: >
+        Optional. 0 bedeutet keine Filterung. Sonst werden nur Nachrichten der
+        angegebenen Gotify-Anwendung berücksichtigt.
+      default: 0
+      selector:
+        number:
+          min: 0
+          mode: box
+    min_priority:
+      name: Mindestpriorität
+      description: Nur Nachrichten ab dieser Priorität auswerten.
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 10
+          mode: slider
+    title_contains:
+      name: Titel enthält
+      description: Optionaler Text, der im Titel enthalten sein muss.
+      default: ""
+      selector:
+        text:
+    message_contains:
+      name: Nachricht enthält
+      description: Optionaler Text, der im Nachrichtentext enthalten sein muss.
+      default: ""
+      selector:
+        text:
+    actions:
+      name: Aktionen
+      description: Aktionen, die bei passender eingehender Nachricht ausgeführt werden.
+      selector:
+        action:
+
+mode: parallel
+max: 20
+
+triggers:
+  - trigger: event
+    event_type: gotify_bridge_message_received
+
+variables:
+  wanted_entry_id: !input entry_id
+  wanted_application_id: !input application_id
+  wanted_min_priority: !input min_priority
+  wanted_title_contains: !input title_contains
+  wanted_message_contains: !input message_contains
+
+conditions:
+  - condition: template
+    value_template: >
+      {{ not wanted_entry_id or trigger.event.data.entry_id == wanted_entry_id }}
+  - condition: template
+    value_template: >
+      {{ (wanted_application_id | int(0)) == 0 or (trigger.event.data.appid | int(0)) == (wanted_application_id | int(0)) }}
+  - condition: template
+    value_template: >
+      {{ (trigger.event.data.priority | int(0)) >= (wanted_min_priority | int(0)) }}
+  - condition: template
+    value_template: >
+      {% set needle = wanted_title_contains | trim | lower %}
+      {{ not needle or needle in (trigger.event.data.title | default('', true) | lower) }}
+  - condition: template
+    value_template: >
+      {% set needle = wanted_message_contains | trim | lower %}
+      {{ not needle or needle in (trigger.event.data.message | default('', true) | lower) }}
+
+actions: !input actions

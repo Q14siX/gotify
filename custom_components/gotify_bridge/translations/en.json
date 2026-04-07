@@ -1,0 +1,267 @@
+{
+  "title": "Gotify",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Server connection",
+        "description": "Set up the basic connection to your Gotify server.",
+        "data": {
+          "name": "Name",
+          "url": "Server URL",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "name": "Freely selectable name of this Home Assistant entry.",
+          "url": "Base URL of your Gotify server, for example `https://gotify.example.com`.",
+          "verify_ssl": "Disable this only if you intentionally use a self-signed or otherwise untrusted certificate."
+        }
+      },
+      "access": {
+        "title": "Access and permissions",
+        "description": "Select how this entry should be used and provide the matching token types.",
+        "data": {
+          "mode": "Operating mode",
+          "app_token": "Application token",
+          "client_token": "Client token"
+        },
+        "data_description": {
+          "mode": "Full = send + receive, send only = notifications only, receive only = stream and management only.",
+          "app_token": "Required for sending notifications from Home Assistant to Gotify.",
+          "client_token": "Required for user, application, message and WebSocket access."
+        }
+      },
+      "behavior": {
+        "title": "Update and streaming behavior",
+        "description": "Define how often Home Assistant should poll Gotify and whether live messages should be received over WebSocket.",
+        "data": {
+          "scan_interval": "Polling interval (seconds)",
+          "enable_websocket": "Enable WebSocket stream"
+        },
+        "data_description": {
+          "scan_interval": "Lower values update sensors and statistics more frequently but create more API traffic.",
+          "enable_websocket": "Recommended for incoming messages and live updates."
+        }
+      },
+      "application": {
+        "title": "Monitored application",
+        "description": "Optionally choose a Gotify application whose message list should be used for message statistics and bulk deletion.",
+        "data": {
+          "monitored_application_id": "Monitored application"
+        },
+        "data_description": {
+          "monitored_application_id": "Leave empty if no specific application should be monitored."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the server.",
+      "invalid_client_token": "The client token is invalid.",
+      "unknown": "An unknown error occurred."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Behavior",
+        "description": "Adjust connection verification, polling interval and live streaming.",
+        "data": {
+          "verify_ssl": "Verify SSL certificate",
+          "scan_interval": "Polling interval (seconds)",
+          "enable_websocket": "Enable WebSocket stream"
+        },
+        "data_description": {
+          "verify_ssl": "Disable this only if you intentionally use a self-signed or otherwise untrusted certificate.",
+          "scan_interval": "Lower values update sensors and statistics more frequently but create more API traffic.",
+          "enable_websocket": "Recommended for incoming messages and live updates."
+        }
+      },
+      "application": {
+        "title": "Monitored application",
+        "description": "Optionally choose which Gotify application should be monitored for message statistics and clear actions.",
+        "data": {
+          "monitored_application_id": "Monitored application"
+        },
+        "data_description": {
+          "monitored_application_id": "Leave empty if no specific application should be monitored."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the server.",
+      "unknown": "An unknown error occurred."
+    }
+  },
+  "selector": {
+    "mode": {
+      "options": {
+        "full": "Full access",
+        "send_only": "Send only",
+        "receive_only": "Receive only"
+      }
+    }
+  },
+  "entity": {
+    "notify": {
+      "notifier": {
+        "name": "Notifications"
+      }
+    },
+    "event": {
+      "incoming_message": {
+        "name": "Incoming message"
+      }
+    },
+    "binary_sensor": {
+      "websocket_connected": {
+        "name": "WebSocket connection"
+      }
+    },
+    "sensor": {
+      "server_version": {
+        "name": "Server version"
+      },
+      "server_commit": {
+        "name": "Server commit"
+      },
+      "health": {
+        "name": "Server health",
+        "state": {
+          "green": "Healthy",
+          "yellow": "Warning",
+          "red": "Problem",
+          "unknown": "Unknown"
+        }
+      },
+      "database_health": {
+        "name": "Database health",
+        "state": {
+          "green": "Healthy",
+          "yellow": "Warning",
+          "red": "Problem",
+          "unknown": "Unknown"
+        }
+      },
+      "current_user": {
+        "name": "Current user"
+      },
+      "applications_count": {
+        "name": "Applications count"
+      },
+      "clients_count": {
+        "name": "Clients count"
+      },
+      "monitored_messages_count": {
+        "name": "Monitored messages count"
+      },
+      "received_messages_total": {
+        "name": "Received messages total"
+      },
+      "last_message_title": {
+        "name": "Last message title"
+      },
+      "last_message_priority": {
+        "name": "Last message priority"
+      }
+    }
+  },
+  "services": {
+    "send_message": {
+      "name": "Send message",
+      "description": "Send a message through the selected Gotify entry.",
+      "fields": {
+        "entry_id": {
+          "name": "Entry ID",
+          "description": "Target a specific Gotify entry when multiple entries exist."
+        },
+        "message": {
+          "name": "Message",
+          "description": "Message body to send."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Optional title of the notification."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Gotify priority value."
+        },
+        "markdown": {
+          "name": "Markdown",
+          "description": "Send the message as Markdown via `client::display.contentType`."
+        },
+        "click_url": {
+          "name": "Click URL",
+          "description": "URL to open when the notification is tapped."
+        },
+        "big_image_url": {
+          "name": "Big image URL",
+          "description": "Large image URL for clients that support it."
+        },
+        "intent_url": {
+          "name": "Intent URL",
+          "description": "Android intent URL for the `onReceive` action."
+        },
+        "extras": {
+          "name": "Extras",
+          "description": "Raw `extras` object that should be passed to Gotify unchanged."
+        }
+      }
+    },
+    "delete_message": {
+      "name": "Delete message",
+      "description": "Delete a Gotify message by its numeric ID.",
+      "fields": {
+        "entry_id": {
+          "name": "Entry ID",
+          "description": "Target a specific Gotify entry when multiple entries exist."
+        },
+        "message_id": {
+          "name": "Message ID",
+          "description": "Numeric Gotify message ID."
+        }
+      }
+    },
+    "clear_messages": {
+      "name": "Clear messages",
+      "description": "Delete all messages belonging to the configured monitored application.",
+      "fields": {
+        "entry_id": {
+          "name": "Entry ID",
+          "description": "Target a specific Gotify entry when multiple entries exist."
+        }
+      }
+    },
+    "refresh": {
+      "name": "Refresh",
+      "description": "Refresh all Gotify data for the selected entry immediately.",
+      "fields": {
+        "entry_id": {
+          "name": "Entry ID",
+          "description": "Target a specific Gotify entry when multiple entries exist."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_entry_id": {
+      "message": "Unknown Gotify entry ID: {entry_id}"
+    },
+    "entry_id_required": {
+      "message": "Multiple Gotify entries are configured. Please specify an entry ID."
+    },
+    "missing_app_token": {
+      "message": "This Gotify entry has no application token and cannot send messages."
+    },
+    "missing_client_token": {
+      "message": "This Gotify entry has no client token and cannot manage or receive messages."
+    },
+    "missing_monitored_application": {
+      "message": "No monitored application is configured for this Gotify entry."
+    }
+  },
+  "device": {
+    "server_entry": {
+      "name": "Gotify server ({name})"
+    }
+  }
+}
