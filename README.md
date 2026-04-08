@@ -57,9 +57,8 @@ Direkt-Link für HACS:
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
 
-
-#### Passende Home Assistant App
-
+<details><summary><b>Passende Home Assistant App</b></summary>
+  
 Zusätzlich steht eine passende **Home Assistant App** für einen selbst gehosteten **Gotify Server** zur Verfügung.
 
 Mit dem folgenden Button kannst Du das App-Repository direkt in Home Assistant hinzufügen:
@@ -72,6 +71,7 @@ Die App und diese HACS-Integration ergänzen sich bewusst:
 
 - Die **App** stellt den Gotify-Server direkt in Home Assistant bereit.
 - Die **Integration** verbindet Home Assistant mit einem oder mehreren Gotify-Servern für Senden, Empfangen, Sensoren, Events und Automationen.
+</details>
 
 #### Manuelle Installation
 
@@ -411,8 +411,7 @@ Direct HACS button:
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
 
-
-#### Matching Home Assistant app
+<details><summary><b>Matching Home Assistant app</b></summary>
 
 A matching **Home Assistant app** for a self-hosted **Gotify Server** is also available.
 
@@ -426,6 +425,7 @@ The app and this HACS integration are designed to complement each other:
 
 - The **app** provides the Gotify server directly inside Home Assistant.
 - The **integration** connects Home Assistant to one or more Gotify servers for sending, receiving, sensors, events, and automations.
+</details>
 
 #### Manual installation
 
