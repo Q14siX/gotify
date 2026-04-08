@@ -21,6 +21,20 @@
 
 Die Integration ist **vollständig zweisprachig** aufgebaut und bringt sowohl deutschsprachige als auch englischsprachige Übersetzungen für Benutzeroberfläche, Services, Config-Flow, Options-Flow und Entitätsnamen mit.
 
+### Passende Home Assistant App
+
+Für Gotify steht zusätzlich eine passende **Home Assistant App** zur Verfügung.
+
+Diese App stellt einen vollständig selbst gehosteten **Gotify Server** direkt in Home Assistant bereit. Sie startet den Server lokal in Home Assistant, speichert Daten dauerhaft im App-Datenverzeichnis und bindet die Weboberfläche sauber über **Ingress**, **Öffnen**-Button und **Seitenleiste** ein.
+
+Damit lassen sich beide Projekte sehr sinnvoll kombinieren:
+
+- Die **App** stellt den Gotify-Server in Home Assistant bereit.
+- Die **HACS-Integration** verbindet Home Assistant mit einem oder mehreren Gotify-Servern.
+- Dadurch kannst Du einen lokal in Home Assistant betriebenen Gotify-Server direkt für Benachrichtigungen, Sensoren, Events, Streaming und Automationen nutzen.
+
+Die App ist besonders dann interessant, wenn Du Gotify komplett innerhalb Deiner Home-Assistant-Umgebung selbst hosten möchtest.
+
 ### Wichtiger technischer Hinweis
 
 Der sichtbare Integrationsname in Home Assistant lautet **Gotify**.
@@ -358,6 +372,20 @@ Das Repository enthält Brand-Assets im Integrationsordner `custom_components/go
 **Gotify for Home Assistant** is a custom, HACS-ready Home Assistant integration that lets you configure one or more Gotify servers through a config flow and then use them for message sending, incoming message handling, state monitoring, and automation workflows.
 
 The integration is **fully bilingual** and ships with German and English translations for the user interface, services, config flow, options flow, and entity names.
+
+### Matching Home Assistant app
+
+A matching **Home Assistant app** for Gotify is also available.
+
+This app provides a fully self-hosted **Gotify Server** directly inside Home Assistant. It starts the server locally in Home Assistant, stores data persistently inside the app data directory, and cleanly integrates the web interface through **ingress**, the **Open** button, and the **sidebar**.
+
+This makes both projects a very useful combination:
+
+- The **app** provides the Gotify server inside Home Assistant.
+- The **HACS integration** connects Home Assistant to one or more Gotify servers.
+- This allows you to use a locally hosted Gotify server inside Home Assistant directly for notifications, sensors, events, streaming, and automations.
+
+The app is especially useful if you want to self-host Gotify completely inside your Home Assistant environment.
 
 ### Important technical note
 
