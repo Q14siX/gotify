@@ -11,7 +11,7 @@
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
 
 ---
-# Gotify HACS Integration
+# Gotify für Home Assistant
 
 ## Deutsch / German
 
@@ -20,20 +20,6 @@
 **Gotify for Home Assistant** ist eine benutzerdefinierte, HACS-fähige Home-Assistant-Integration, mit der Du einen oder mehrere Gotify-Server komfortabel per Config-Flow einrichten und anschließend für Senden, Empfangen, Zustandsüberwachung und Automatisierung nutzen kannst.
 
 Die Integration ist **vollständig zweisprachig** aufgebaut und bringt sowohl deutschsprachige als auch englischsprachige Übersetzungen für Benutzeroberfläche, Services, Config-Flow, Options-Flow und Entitätsnamen mit.
-
-### Passende Home Assistant App
-
-Für Gotify steht zusätzlich eine passende **Home Assistant App** zur Verfügung.
-
-Diese App stellt einen vollständig selbst gehosteten **Gotify Server** direkt in Home Assistant bereit. Sie startet den Server lokal in Home Assistant, speichert Daten dauerhaft im App-Datenverzeichnis und bindet die Weboberfläche sauber über **Ingress**, **Öffnen**-Button und **Seitenleiste** ein.
-
-Damit lassen sich beide Projekte sehr sinnvoll kombinieren:
-
-- Die **App** stellt den Gotify-Server in Home Assistant bereit.
-- Die **HACS-Integration** verbindet Home Assistant mit einem oder mehreren Gotify-Servern.
-- Dadurch kannst Du einen lokal in Home Assistant betriebenen Gotify-Server direkt für Benachrichtigungen, Sensoren, Events, Streaming und Automationen nutzen.
-
-Die App ist besonders dann interessant, wenn Du Gotify komplett innerhalb Deiner Home-Assistant-Umgebung selbst hosten möchtest.
 
 ### Wichtiger technischer Hinweis
 
@@ -72,6 +58,22 @@ Die Integration bietet unter anderem folgende Funktionen:
 Direkt-Link für HACS:
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
+
+
+#### Passende Home Assistant App
+
+Zusätzlich steht eine passende **Home Assistant App** für einen selbst gehosteten **Gotify Server** zur Verfügung.
+
+Mit dem folgenden Button kannst Du das App-Repository direkt in Home Assistant hinzufügen:
+
+[![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FQ14siX%2Fgotify-homeassistant-app%2F)
+
+Danach kannst Du im App-Store die App **Gotify Server** installieren.
+
+Die App und diese HACS-Integration ergänzen sich bewusst:
+
+- Die **App** stellt den Gotify-Server direkt in Home Assistant bereit.
+- Die **Integration** verbindet Home Assistant mit einem oder mehreren Gotify-Servern für Senden, Empfangen, Sensoren, Events und Automationen.
 
 #### Manuelle Installation
 
@@ -363,7 +365,7 @@ Das Repository enthält Brand-Assets im Integrationsordner `custom_components/go
 
 ---
 
-# Gotify HACS Integration
+# Gotify for Home Assistant
 
 ## English
 
@@ -372,20 +374,6 @@ Das Repository enthält Brand-Assets im Integrationsordner `custom_components/go
 **Gotify for Home Assistant** is a custom, HACS-ready Home Assistant integration that lets you configure one or more Gotify servers through a config flow and then use them for message sending, incoming message handling, state monitoring, and automation workflows.
 
 The integration is **fully bilingual** and ships with German and English translations for the user interface, services, config flow, options flow, and entity names.
-
-### Matching Home Assistant app
-
-A matching **Home Assistant app** for Gotify is also available.
-
-This app provides a fully self-hosted **Gotify Server** directly inside Home Assistant. It starts the server locally in Home Assistant, stores data persistently inside the app data directory, and cleanly integrates the web interface through **ingress**, the **Open** button, and the **sidebar**.
-
-This makes both projects a very useful combination:
-
-- The **app** provides the Gotify server inside Home Assistant.
-- The **HACS integration** connects Home Assistant to one or more Gotify servers.
-- This allows you to use a locally hosted Gotify server inside Home Assistant directly for notifications, sensors, events, streaming, and automations.
-
-The app is especially useful if you want to self-host Gotify completely inside your Home Assistant environment.
 
 ### Important technical note
 
@@ -424,6 +412,22 @@ The integration includes, among other things:
 Direct HACS button:
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
+
+
+#### Matching Home Assistant app
+
+A matching **Home Assistant app** for a self-hosted **Gotify Server** is also available.
+
+Use the following button to add the app repository directly to Home Assistant:
+
+[![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FQ14siX%2Fgotify-homeassistant-app%2F)
+
+After that, you can install the **Gotify Server** app from the app store.
+
+The app and this HACS integration are designed to complement each other:
+
+- The **app** provides the Gotify server directly inside Home Assistant.
+- The **integration** connects Home Assistant to one or more Gotify servers for sending, receiving, sensors, events, and automations.
 
 #### Manual installation
 
