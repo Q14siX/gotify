@@ -8,10 +8,8 @@
 [![Downloads](https://img.shields.io/github/downloads/Q14siX/gotify/total?style=flat&color=41BDF5&label=Downloads)](https://github.com/Q14siX/gotify/releases/latest)
 [![Issues](https://img.shields.io/github/issues/Q14siX/gotify?style=flat&color=41BDF5&label=Issues)](https://github.com/Q14siX/gotify/issues)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Q14siX&repository=gotify&category=integration)
-
 ---
-# Gotify für Home Assistant
+# Gotify HACS Integration
 
 ## Deutsch / German
 
@@ -365,7 +363,7 @@ Das Repository enthält Brand-Assets im Integrationsordner `custom_components/go
 
 ---
 
-# Gotify for Home Assistant
+# Gotify HACS Integration
 
 ## English
 
