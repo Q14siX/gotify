@@ -11,6 +11,8 @@
 ---
 # Gotify HACS Integration
 
+<a href="https://buymeacoffee.com/q14six"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" width="200"></a>
+
 ## Deutsch / German
 
 ### Überblick
